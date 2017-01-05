@@ -1,0 +1,81 @@
+/*********************
+
+TRANSITION 
+
+Use to apply element transitions
+
+Easing curves: ease, linear, ease-in, ease-out, ease-in-out
+
+Example: @include transition(all,350ms,ease-out);
+Example: Complex curve: @include transition(all,350ms,cubic-bezier(.87,-0.41,.19,1.44));
+
+*********************/
+
+@mixin transition($property: null, $duration: null, $curve: null) {
+
+	@if($property == null) { $property: all; }
+	@if($duration == null) { $duration: 400ms; }
+	@if($curve == null) { $curve: ease; }
+
+	-webkit-transition: $property $duration $curve !important;
+	-moz-transition: $property $duration $curve !important;
+	-ms-transition: $property $duration $curve !important;
+	-o-transition: $property $duration $curve !important;
+	transition: $property $duration $curve !important;
+
+}
+
+/*********************
+
+OPACITY 
+
+Use to apply element opacity
+
+*********************/
+
+@mixin opacity($decimal,$percent) { 
+  -moz-opacity: $decimal !important;
+  -khtml-opacity: $decimal !important;
+  opacity: $decimal !important;
+  -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=$percent) !important;
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=$percent) !important;
+  filter:alpha(opacity=$percent) !important;
+}
+
+/*********************
+FLEX
+*********************/
+
+@mixin displayflex() {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;
+}
+
+/*********************
+
+TRANSFORM MIXIN
+
+Usage: @include transform($rotate,$scale,$skew,$translateX,$translateY,$translateZ);
+
+*********************/
+
+
+@mixin transform($rotate: null, $scale: null, $skew: null, $translateX: null, $translateY: null, $translateZ: null) {
+
+	@if($rotate == null) { $rotate: 0deg; }
+	@if($scale == null) { $scale: 1; }
+	@if($skew == null) { $skew: 0deg; }
+	@if($translateX == null) { $translateX: 0%; }
+	@if($translateY == null) { $translateY: 0%; }
+	@if($translateZ == null) { $translateZ: 0%; }
+
+	transform: rotate($rotate) scale($scale) skew($skew) translateX($translateX) translateY($translateY) translateZ($translateZ);
+	-webkit-transform: rotate($rotate) scale($scale) skew($skew) translateX($translateX) translateY($translateY) translateZ($translateZ);
+	-moz-transform: rotate($rotate) scale($scale) skew($skew) translateX($translateX) translateY($translateY) translateZ($translateZ);
+	-o-transform: rotate($rotate) scale($scale) skew($skew) translateX($translateX) translateY($translateY) translateZ($translateZ);
+	-ms-transform: rotate($rotate) scale($scale) skew($skew) translateX($translateX) translateY($translateY) translateZ($translateZ);
+
+}
